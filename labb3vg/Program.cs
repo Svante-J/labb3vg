@@ -1,4 +1,5 @@
 ﻿using System;
+using labb3vg.ProgramLogic;
 
 namespace labb3vg
 {
@@ -6,7 +7,9 @@ namespace labb3vg
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            GameAdventue adventure = new GameAdventue();
+            adventure.Run();
+            
         }
     }
 }
