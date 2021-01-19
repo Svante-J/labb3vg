@@ -9,7 +9,7 @@ namespace labb3vg
         private string name;
         private int maxHp;
         private int currentHp;
-        private int atack;
+        private int attack;
         private int armor;
         private int level;
         private int experience;
@@ -20,7 +20,7 @@ namespace labb3vg
             Name = name;
             MaxhP = maxhP;
             CurrentHp = currentHp;
-            Atack = atack;
+            Attack = atack;
             Armor = armor;
             Level = level;
             Experience = experience;
@@ -30,15 +30,15 @@ namespace labb3vg
         {
 
         }
-        public void Deskribe()
+        public void PrintStats()
         {
-            Console.WriteLine(Name + MaxhP + Armor);
+            Console.WriteLine($"\tMighty {Name}\nLevel:{Level}\nExperience:{Experience}\nHP:{CurrentHp}/{MaxhP}\nAttack:{Attack}\nArmor:{Armor}\nGold:{Gold}");
         }
 
         public string Name { get => name; set => name = value; }
         public int MaxhP { get => maxHp; set => maxHp = value; }
         public int CurrentHp { get => currentHp; set => currentHp = value; }
-        public int Atack { get => atack; set => atack = value; }
+        public int Attack { get => attack; set => attack = value; }
         public int Armor { get => armor; set => armor = value; }
         public int Level { get => level; set => level = value; }
         public int Experience { get => experience; set => experience = value; }
