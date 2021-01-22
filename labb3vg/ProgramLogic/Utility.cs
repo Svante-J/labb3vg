@@ -1,11 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace labb3vg.ProgramLogic
+﻿namespace labb3vg.ProgramLogic
 {
     static class Utility
     {
+        public static int AddTwoNumbers(int num1, int num2)
+        {
+            return num1 + num2;
+        }
+
+
+
+
+
         /*
         public static readonly List<Item> Items = new List<Item>();
 

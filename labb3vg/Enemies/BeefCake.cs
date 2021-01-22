@@ -1,24 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace labb3vg.Enemies
 {
-    class Cultist : Monster
+    class BeefCake : Monster
     {
-
-        public Cultist()
+        public BeefCake()
         {
-            base.AtkDmg = 3;
-            base.Hp = 15;
+            base.AtkDmg = 4;
+            base.Hp = 25;
             base.Level = 1;
-            base.Name = "Cultist";
-            base.Xp = 5;
+            base.Name = "BeefCake";
+            base.Xp = 8;
             base.MaxHp = 15;
 
         }
 
         public override int attack()
         {
-            Console.WriteLine("Hare hare hare");
+            Console.WriteLine("BraAAAAAWL");
             return base.attack();
         }
         public override string getName()

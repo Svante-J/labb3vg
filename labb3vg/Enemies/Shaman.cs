@@ -1,24 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace labb3vg.Enemies
 {
-    class Cultist : Monster
+    class Shaman : Monster
     {
-
-        public Cultist()
+        public Shaman()
         {
-            base.AtkDmg = 3;
-            base.Hp = 15;
+            base.AtkDmg = 5;
+            base.Hp = 10;
             base.Level = 1;
-            base.Name = "Cultist";
-            base.Xp = 5;
-            base.MaxHp = 15;
+            base.Name = "Shaman";
+            base.Xp = 6;
+            base.MaxHp = 10;
 
         }
 
         public override int attack()
         {
-            Console.WriteLine("Hare hare hare");
+            Console.WriteLine("Mjau!");
             return base.attack();
         }
         public override string getName()

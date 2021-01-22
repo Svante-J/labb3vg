@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace labb3vg.Enemies
 {
@@ -30,6 +28,10 @@ namespace labb3vg.Enemies
         public virtual string getName()
         {
             return this.name;
+        }
+        public virtual int getExp()
+        {
+            return this.xp;
         }
         public virtual int getHp()
         {

@@ -37,15 +37,52 @@ namespace labb3vg
             Gold = gold;
             List<bool> HeroItems; // köper man i butik så gör vi dom true! lägg in alla items.
         }
+       
         public Hero()
         {
 
         }
+        
         public int GiveDmg(Monster monster)//input monster
         {
             monster.takeDamage(Attack);
             return Attack;
         }
+
+        /*
+        public int GetMylevel(int experince)//CHECK LEVEL
+        {
+            int Level = 0;
+            //10, 25, 45, 80, 150, 250, 500, 1500, 2900, 6000
+            if (experince < 10)
+            {
+                level = 1;
+            }
+            else if (experince >= 10 && experince < 22)
+            {
+                Level = 2;
+            }
+            return Level;
+        } */
+
+        public int GetMylevelVersion2(int experince)//CHECK LEVEL
+        {
+            int level = 1;
+            foreach (var item in levelingCurve)
+            {
+                if (experince < item)
+                    return level;
+                else
+                    level++;
+                MaxhP *= 2;
+                Attack *= 2;
+                CurrentHp = MaxhP;
+
+            }
+            return level;
+
+        }
+
         public void takeDamage(int monsterdmg)
         {
             CurrentHp -= monsterdmg;
@@ -54,7 +91,7 @@ namespace labb3vg
         public void PrintStats()
         {
             Console.WriteLine($"\tMighty {Name}\nLevel:{Level}\nExperience:{Experience}\nHP:{CurrentHp}/{MaxhP}\nAttack:{Attack}\nArmor:{Armor}\nGold:{Gold}");
-            Console.WriteLine("PLAYER INVENTORY");
+            Console.WriteLine("\nPLAYER INVENTORY");
             Console.WriteLine("================");
             Console.WriteLine("You have zero items");
             Console.ReadLine();

@@ -1,7 +1,6 @@
 ﻿using labb3vg.Enemies;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 
 namespace labb3vg.ProgramLogic
@@ -11,7 +10,7 @@ namespace labb3vg.ProgramLogic
     /// </summary>
     class GameAdventue
     {
-       
+
         Hero hero = new Hero();
         bool winner, looser;
         static List<Monster> listOfMonstersOne = new List<Monster>();
@@ -21,11 +20,12 @@ namespace labb3vg.ProgramLogic
         public void Run()
         {
             CreateHero();
-            CreateEnemies();
+
 
             int menyChoice = 0;
             while (!winner && !looser)
-            { 
+            {
+                CreateEnemies();
                 PrintOptionMeny();
                 Console.WriteLine("> ");
                 menyChoice = Convert.ToInt32(Console.ReadLine());
@@ -40,11 +40,13 @@ namespace labb3vg.ProgramLogic
                     case 3:
                         Console.WriteLine("viva la boutiq");
                         Console.ReadLine();
-
                         break;
                     case 4:
                         Console.WriteLine("Bye!");
                         looser = true;
+                        break;
+                    default:
+
                         break;
                 }
 
@@ -53,11 +55,8 @@ namespace labb3vg.ProgramLogic
                     Console.WriteLine("u champ!");
                 }
 
-
-
-
             }
-            
+
         }
 
         public void CreateHero()
@@ -66,7 +65,7 @@ namespace labb3vg.ProgramLogic
             Console.WriteLine("\t(Cheat code == Robin)");
             hero.Name = Console.ReadLine();
 
-            if(hero.Name == "Robin" || hero.Name == "robin")
+            if (hero.Name.ToLower() == "robin")
             {
                 hero.Attack = 1000;
                 hero.MaxhP = 10000;
@@ -88,16 +87,22 @@ namespace labb3vg.ProgramLogic
                 hero.Experience = 0;
                 hero.Level = 1;
                 hero.Gold = 10;
-                Console.WriteLine($" Welcome mighty {hero.Name} your power level is over 9000 and your attack is {hero.Attack}");
+                Console.WriteLine($" Welcome mighty {hero.Name} your attack is {hero.Attack}");
                 Console.ReadLine();
             }
         }
 
         public void CreateEnemies()
         {
+
             // Enkla Monster
             Cultist cultist = new Cultist();
+            BeefCake beefCake = new BeefCake();
+            Shaman shaman = new Shaman();
+
             listOfMonstersOne.Add(cultist);
+            listOfMonstersOne.Add(beefCake);
+            listOfMonstersOne.Add(shaman);
 
             //Mellanmjölk monster
 
@@ -113,12 +118,12 @@ namespace labb3vg.ProgramLogic
                 "3: Shop\n" +
                 "4: Exit Game");
             // switch och val
-            
+
         }
         private void Adventurepicker()
         {
-           // Random rn = new Random();
-           // int monsterRandomiser = rn.Next(listOfMonstersOne.Count);
+            // Random rn = new Random();
+            // int monsterRandomiser = rn.Next(listOfMonstersOne.Count);
 
             Console.Clear();
             Console.WriteLine("\n\tThe night is dark and full off errors\n" +
@@ -128,11 +133,11 @@ namespace labb3vg.ProgramLogic
                 "4: Back to Main");
             int adventureChoice = default;
             adventureChoice = Convert.ToInt32(Console.ReadLine());
-            
+
             switch (adventureChoice)
             {
                 case 1:
-                   
+
                     BattleLevelOne();
                     break;
                 case 2:
@@ -141,7 +146,7 @@ namespace labb3vg.ProgramLogic
                 case 3:
                     BattleLevelThree();
                     break;
-                case 4:                    
+                case 4:
                     PrintOptionMeny();
                     break;
             }
@@ -156,20 +161,21 @@ namespace labb3vg.ProgramLogic
             Random rnDice = new Random();
             int luckDice = rnDice.Next(11);
             if (luckDice == 1)
-            { 
+            {
                 Console.WriteLine("lucky fudge!");
+                Console.WriteLine("its dangerous to go alone take this!");
                 Console.ReadLine();
-            
+
             }
-            else 
-            { 
+            else
+            {
                 Random rn = new Random();
                 int monsterRandomiser = rn.Next(listOfMonstersOne.Count);
                 BattleComp(listOfMonstersOne[monsterRandomiser]);
-                
+
             }
 
-            
+
         }
         private void BattleLevelTwo()
         {
@@ -189,14 +195,29 @@ namespace labb3vg.ProgramLogic
 
             Console.ReadLine();
         }
-        private void BattleComp(Monster monster)
+        private void BattleComp(Monster localMonster)
         {
-            Console.WriteLine($"you hav encountered {monster.getName()}");         
+            Console.WriteLine($"you hav encountered {localMonster.getName()}");
             Console.ReadLine();
-            while (!monster.isDead())
+            localMonster.isDead();// sätter tillbaka värdet på booolen om man redan slagits
+            while (!localMonster.isDead())
             {
-                Console.WriteLine($"Du svingar och slår! {monster.getName()} tar {hero.GiveDmg(monster)} i skada");
-                Console.WriteLine($"av {monster.getName()} kvarstår {monster.getHp()}");
+                Console.WriteLine($"Du svingar och slår! {localMonster.getName()} tar {hero.GiveDmg(localMonster)} i skada");
+                Console.WriteLine($"av {localMonster.getName()} liv återstår {localMonster.getHp()}");
+                if (localMonster.isDead())
+                {
+                    Console.WriteLine($"you have slain {localMonster.getName()} and gained {localMonster.getExp()}:Experiense");
+                    hero.Experience = Utility.AddTwoNumbers(localMonster.getExp(), hero.Experience);
+                    Console.WriteLine($"din xp är nu {hero.Experience}");
+                    Console.WriteLine($"Du har nu level {hero.GetMylevelVersion2(hero.Experience)} hgfh ");
+
+
+
+                }
+                int monsterDmg = localMonster.attack();
+                Console.WriteLine($"The skurk hit you for {monsterDmg}");
+                hero.takeDamage(monsterDmg);
+                Console.WriteLine($"u has {hero.CurrentHp} left");
                 Console.ReadLine();
             }
         }
