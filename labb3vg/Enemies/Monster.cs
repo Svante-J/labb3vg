@@ -21,7 +21,7 @@ namespace labb3vg.Enemies
         }
 
 
-        public virtual int Loot()
+        public virtual int DropGold()
         {
             rn.Next(giveGold);
             return giveGold;
@@ -36,10 +36,7 @@ namespace labb3vg.Enemies
         {
             return this.name;
         }
-        public virtual int getExp()
-        {
-            return this.xp;
-        }
+     
         public virtual int getHp()
         {
             return this.hp;

@@ -14,6 +14,7 @@ namespace labb3vg.Enemies
             base.Name = "BeefCake";
             base.Xp = 8;
             base.MaxHp = 15;
+            base.GiveGold = 5;
 
         }
 

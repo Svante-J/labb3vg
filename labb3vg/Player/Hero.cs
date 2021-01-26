@@ -18,13 +18,7 @@ namespace labb3vg
 
         private int[] levelingCurve = new int[] { 10, 25, 45, 80, 150, 250, 500, 1500, 2900, 6000 };
        
-        
-        //int targetXP = 850;
-       // int level = 0;
-
-        //while ((level<levelingCurve.Length) && (experience > xpArray[level]))
-        //++level;
-
+                      
         public Hero(string name, int maxhP, int currentHp, int atack, int armor, int level, int experience, int gold)
         {
             Name = name;
@@ -35,12 +29,18 @@ namespace labb3vg
             Level = level;
             Experience = experience;
             Gold = gold;
-            List<bool> HeroItems; // köper man i butik så gör vi dom true! lägg in alla items.
+           // List<bool> HeroItems; // köper man i butik så gör vi dom true! lägg in alla items.
         }
        
         public Hero()
         {
 
+        }
+
+        public void Loot(Monster monster)
+        {
+            monster.DropGold();
+            Gold += monster.DropGold();
         }
         
         public int GiveDmg(Monster monster)//input monster
@@ -71,20 +71,25 @@ namespace labb3vg
             foreach (var item in levelingCurve)
             {
                 if (experince < item)
-                    return level;
+                { return level; }
                 else
+                {
                     level++;
                 MaxhP *= 2;
                 Attack *= 2;
                 CurrentHp = MaxhP;
                 Level = level;
+                    if (MaxhP > 5000)
+                    { MaxhP = 5000; Attack = 600; }
+                }
+
 
             }
             return level;
 
         }
 
-        public void takeDamage(int monsterdmg)
+        public void TakeDamage(int monsterdmg)
         {
             CurrentHp -= monsterdmg;
         }

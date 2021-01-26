@@ -14,6 +14,7 @@ namespace labb3vg.Enemies
             base.Name = "Dark Cultist";
             base.Xp = 600;
             base.MaxHp = 490;
+            base.GiveGold = 100;
 
         }
 

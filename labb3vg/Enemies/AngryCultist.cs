@@ -14,7 +14,7 @@ namespace labb3vg.Enemies
             base.Name = "Angry Cultist";
             base.Xp = 45;
             base.MaxHp = 45;
-            base.GiveGold = 5;
+            base.GiveGold = 50;
 
     }
 
@@ -23,9 +23,9 @@ namespace labb3vg.Enemies
             Console.WriteLine("Hare hare hare");
             return base.attack();
         }
-        public override int Loot()
+        public override int DropGold()
         {
-            return base.Loot();
+            return base.DropGold();
         }
         public override string getName()
         {

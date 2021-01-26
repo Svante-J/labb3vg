@@ -14,9 +14,14 @@ namespace labb3vg.Enemies
             base.Xp = 5;
             base.MaxHp = 15;
             base.GiveGold = 5;
-            
+            base.GiveGold = 5;
 
-    }
+
+        }
+        public override int DropGold()
+        {
+            return base.DropGold();
+        }
 
         public override int attack()
         {
@@ -40,9 +45,6 @@ namespace labb3vg.Enemies
         {
             return base.getExp();
         }
-        public override int Loot()
-        {
-            return base.Loot();
-        }
+        
     }
 }

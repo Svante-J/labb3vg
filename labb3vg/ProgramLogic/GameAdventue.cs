@@ -191,28 +191,22 @@ namespace labb3vg.ProgramLogic
 
             }
 
-
         }
+
         private void BattleLevelTwo()
         {
             Random rn = new Random();
             int monsterRandomiser = rn.Next(listOfMonstersTwo.Count);
             BattleComp(listOfMonstersTwo[monsterRandomiser]);
-            Console.WriteLine("här blir det slagsmål");
-
-
-            Console.ReadLine();
         }
+
         private void BattleLevelThree()
         {
             Random rn = new Random();
             int monsterRandomiser = rn.Next(listOfMonstersThree.Count);
-            BattleComp(listOfMonstersThree[monsterRandomiser]);
-            Console.WriteLine("här blir det slagsmål");
-
-
-            Console.ReadLine();
+            BattleComp(listOfMonstersThree[monsterRandomiser]); 
         }
+
         private void BattleComp(Monster localMonster)
         {
             localMonster.isDead();
@@ -226,10 +220,12 @@ namespace labb3vg.ProgramLogic
 
                 if (localMonster.isDead())
                 {
-                    Console.WriteLine($"you have slain {localMonster.getName()} and gained {localMonster.getExp()}:Experiense");
+                    Console.WriteLine($"you have slain {localMonster.getName()} and gained {localMonster.getExp()}:Experiense and" +
+                        $" {localMonster.DropGold()} gold");
                     hero.Experience = Utility.AddTwoNumbers(localMonster.getExp(), hero.Experience);
-                    Console.WriteLine($"din xp är nu {hero.Experience}");
-                    Console.WriteLine($"Du har nu level {hero.GetMylevelVersion2(hero.Experience)} hgfh ");
+                    hero.Gold = Utility.AddTwoNumbers(localMonster.DropGold(), hero.Gold);
+                    Console.WriteLine($"din xp är nu {hero.Experience} och du har {hero.Gold} i skattkistan");
+                    Console.WriteLine($"Du har nu level {hero.GetMylevelVersion2(hero.Experience)}");
                     Console.ReadLine();
                     Console.Write(">");
 
@@ -237,6 +233,7 @@ namespace labb3vg.ProgramLogic
                     {
                         Console.Clear();
                         Console.WriteLine("Congrats u have beaten the game");
+                        Console.ReadLine();
                         winner = true;
                     }
 
@@ -246,7 +243,7 @@ namespace labb3vg.ProgramLogic
                     // Räkna bort armor
                     int monsterDmg = Utility.SubbractTwoNumbers(localMonster.attack(),hero.Armor);                 
                     Console.WriteLine($"The skurk hit you for {monsterDmg}");
-                    hero.takeDamage(monsterDmg);
+                    hero.TakeDamage(monsterDmg);
                     Console.WriteLine($"u has {hero.CurrentHp} left");
                     Console.ReadLine();
                 

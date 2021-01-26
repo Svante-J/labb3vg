@@ -14,6 +14,7 @@ namespace labb3vg.Enemies
             base.Name = "Shaman with cat helmet";
             base.Xp = 35;
             base.MaxHp = 30;
+            base.GiveGold = 50;
 
         }
 

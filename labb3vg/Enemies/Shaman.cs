@@ -14,12 +14,13 @@ namespace labb3vg.Enemies
             base.Name = "Shaman";
             base.Xp = 6;
             base.MaxHp = 10;
+            base.GiveGold = 5;
 
         }
 
         public override int attack()
         {
-            Console.WriteLine("Mjau!");
+            Console.WriteLine("\"come at me!\"");
             return base.attack();
         }
         public override string getName()

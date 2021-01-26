@@ -3,7 +3,7 @@
     static class Utility
     {
         /// <summary>
-        /// Används för xp returnering
+        /// Används för xp returnering och guld
         /// </summary>
         /// <param name="num1"></param>
         /// <param name="num2"></param>
