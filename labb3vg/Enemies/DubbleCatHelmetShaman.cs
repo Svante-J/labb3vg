@@ -1,26 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace labb3vg.Enemies
 {
-    class Cultist : Monster
+    class DubbleCatHelmetShaman : Monster
     {
-
-        public Cultist()
+        public DubbleCatHelmetShaman()
         {
-            base.AtkDmg = 3;
-            base.Hp = 15;
-            base.Level = 1;
-            base.Name = "Cultist";
-            base.Xp = 5;
-            base.MaxHp = 15;
-            base.GiveGold = 5;
-            
+            base.AtkDmg = 400;
+            base.Hp = 1500;
+            base.Level = 3;
+            base.Name = "Shaman with two cat helmets";
+            base.Xp = 1200;
+            base.MaxHp = 1500;
 
-    }
+        }
 
         public override int attack()
         {
-            Console.WriteLine("Hare hare hare");
+            Console.WriteLine("Mjau!");
             return base.attack();
         }
         public override string getName()
@@ -39,10 +38,6 @@ namespace labb3vg.Enemies
         public override int getExp()
         {
             return base.getExp();
-        }
-        public override int Loot()
-        {
-            return base.Loot();
         }
     }
 }

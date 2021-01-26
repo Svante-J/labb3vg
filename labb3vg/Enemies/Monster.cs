@@ -20,6 +20,13 @@ namespace labb3vg.Enemies
 
         }
 
+
+        public virtual int Loot()
+        {
+            rn.Next(giveGold);
+            return giveGold;
+        }
+
         public virtual int attack()
         {
             rn.Next(atkDmg);

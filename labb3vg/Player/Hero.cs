@@ -77,6 +77,7 @@ namespace labb3vg
                 MaxhP *= 2;
                 Attack *= 2;
                 CurrentHp = MaxhP;
+                Level = level;
 
             }
             return level;

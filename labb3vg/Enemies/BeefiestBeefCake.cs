@@ -1,26 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace labb3vg.Enemies
 {
-    class Cultist : Monster
+    class BeefiestBeefCake : Monster
     {
-
-        public Cultist()
+        public BeefiestBeefCake()
         {
-            base.AtkDmg = 3;
-            base.Hp = 15;
-            base.Level = 1;
-            base.Name = "Cultist";
-            base.Xp = 5;
-            base.MaxHp = 15;
-            base.GiveGold = 5;
-            
+            base.AtkDmg = 60;
+            base.Hp = 1000;
+            base.Level = 3;
+            base.Name = "BeefierBeefCake";
+            base.Xp = 1000;
+            base.MaxHp = 1000;
 
-    }
+        }
 
         public override int attack()
         {
-            Console.WriteLine("Hare hare hare");
+            Console.WriteLine("\"All your bases are beloning to us!\"");
             return base.attack();
         }
         public override string getName()
@@ -39,10 +38,6 @@ namespace labb3vg.Enemies
         public override int getExp()
         {
             return base.getExp();
-        }
-        public override int Loot()
-        {
-            return base.Loot();
         }
     }
 }

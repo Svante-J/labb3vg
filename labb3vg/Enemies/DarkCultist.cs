@@ -1,22 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace labb3vg.Enemies
 {
-    class Cultist : Monster
+    class DarkCultist : Monster
     {
-
-        public Cultist()
+        public DarkCultist()
         {
-            base.AtkDmg = 3;
-            base.Hp = 15;
-            base.Level = 1;
-            base.Name = "Cultist";
-            base.Xp = 5;
-            base.MaxHp = 15;
-            base.GiveGold = 5;
-            
+            base.AtkDmg = 250;
+            base.Hp = 490;
+            base.Level = 3;
+            base.Name = "Dark Cultist";
+            base.Xp = 600;
+            base.MaxHp = 490;
 
-    }
+        }
 
         public override int attack()
         {
@@ -39,10 +38,6 @@ namespace labb3vg.Enemies
         public override int getExp()
         {
             return base.getExp();
-        }
-        public override int Loot()
-        {
-            return base.Loot();
         }
     }
 }

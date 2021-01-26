@@ -1,20 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace labb3vg.Enemies
 {
-    class Cultist : Monster
+    class AngryCultist : Monster
     {
-
-        public Cultist()
+        public AngryCultist()
         {
-            base.AtkDmg = 3;
-            base.Hp = 15;
-            base.Level = 1;
-            base.Name = "Cultist";
-            base.Xp = 5;
-            base.MaxHp = 15;
+            base.AtkDmg = 9;
+            base.Hp = 45;
+            base.Level = 2;
+            base.Name = "Angry Cultist";
+            base.Xp = 45;
+            base.MaxHp = 45;
             base.GiveGold = 5;
-            
 
     }
 
@@ -22,6 +22,10 @@ namespace labb3vg.Enemies
         {
             Console.WriteLine("Hare hare hare");
             return base.attack();
+        }
+        public override int Loot()
+        {
+            return base.Loot();
         }
         public override string getName()
         {
@@ -40,9 +44,6 @@ namespace labb3vg.Enemies
         {
             return base.getExp();
         }
-        public override int Loot()
-        {
-            return base.Loot();
-        }
     }
 }
+

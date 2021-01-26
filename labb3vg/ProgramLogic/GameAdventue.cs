@@ -12,7 +12,7 @@ namespace labb3vg.ProgramLogic
     {
 
         Hero hero = new Hero();
-        bool winner, looser;
+        static bool winner, looser;
         static List<Monster> listOfMonstersOne = new List<Monster>();
         static List<Monster> listOfMonstersTwo = new List<Monster>();
         static List<Monster> listOfMonstersThree = new List<Monster>();
@@ -74,7 +74,8 @@ namespace labb3vg.ProgramLogic
                 hero.Experience = 0;
                 hero.Level = 1;
                 hero.Gold = 500;
-                Console.WriteLine($" Welcome mighty {hero.Name} your power level is over 9000 and uou have so verry mutch armor att du inte kan dö!");
+                Console.WriteLine($" Welcome mighty {hero.Name} your power level is over 9000 and you have so verry mutch armor att du inte kan dö!");
+                Console.Write(">");
                 Console.ReadLine();
             }
 
@@ -83,7 +84,7 @@ namespace labb3vg.ProgramLogic
                 hero.Attack = 5;
                 hero.MaxhP = 30;
                 hero.CurrentHp = 30;
-                hero.Armor = 0;
+                hero.Armor = 1;
                 hero.Experience = 0;
                 hero.Level = 1;
                 hero.Gold = 10;
@@ -99,10 +100,25 @@ namespace labb3vg.ProgramLogic
             Cultist cultist = new Cultist();
             BeefCake beefCake = new BeefCake();
             Shaman shaman = new Shaman();
+            // Semi svåra Monster
+            AngryCultist angryCultist = new AngryCultist();
+            BeefierBeefCake beefierBeefCake = new BeefierBeefCake();
+            CatHelmetShaman catHelmetShaman = new CatHelmetShaman();
+            // Svåra
+            DarkCultist darkCultist = new DarkCultist();
+            BeefiestBeefCake beefiestBeefCake = new BeefiestBeefCake();
+            DubbleCatHelmetShaman dubbleCatHelmetShaman = new DubbleCatHelmetShaman();
 
             listOfMonstersOne.Add(cultist);
             listOfMonstersOne.Add(beefCake);
             listOfMonstersOne.Add(shaman);
+            listOfMonstersTwo.Add(angryCultist);
+            listOfMonstersTwo.Add(beefierBeefCake);
+            listOfMonstersTwo.Add(catHelmetShaman);
+            listOfMonstersThree.Add(darkCultist);
+            listOfMonstersThree.Add(beefiestBeefCake);
+            listOfMonstersThree.Add(dubbleCatHelmetShaman);
+
 
             //Mellanmjölk monster
 
@@ -181,6 +197,7 @@ namespace labb3vg.ProgramLogic
         {
             Random rn = new Random();
             int monsterRandomiser = rn.Next(listOfMonstersTwo.Count);
+            BattleComp(listOfMonstersTwo[monsterRandomiser]);
             Console.WriteLine("här blir det slagsmål");
 
 
@@ -190,6 +207,7 @@ namespace labb3vg.ProgramLogic
         {
             Random rn = new Random();
             int monsterRandomiser = rn.Next(listOfMonstersThree.Count);
+            BattleComp(listOfMonstersThree[monsterRandomiser]);
             Console.WriteLine("här blir det slagsmål");
 
 
@@ -197,6 +215,7 @@ namespace labb3vg.ProgramLogic
         }
         private void BattleComp(Monster localMonster)
         {
+            localMonster.isDead();
             Console.WriteLine($"you hav encountered {localMonster.getName()}");
             Console.ReadLine();
             localMonster.isDead();// sätter tillbaka värdet på booolen om man redan slagits
@@ -204,21 +223,37 @@ namespace labb3vg.ProgramLogic
             {
                 Console.WriteLine($"Du svingar och slår! {localMonster.getName()} tar {hero.GiveDmg(localMonster)} i skada");
                 Console.WriteLine($"av {localMonster.getName()} liv återstår {localMonster.getHp()}");
+
                 if (localMonster.isDead())
                 {
                     Console.WriteLine($"you have slain {localMonster.getName()} and gained {localMonster.getExp()}:Experiense");
                     hero.Experience = Utility.AddTwoNumbers(localMonster.getExp(), hero.Experience);
                     Console.WriteLine($"din xp är nu {hero.Experience}");
                     Console.WriteLine($"Du har nu level {hero.GetMylevelVersion2(hero.Experience)} hgfh ");
+                    Console.ReadLine();
+                    Console.Write(">");
 
-
+                    if (hero.Level == 10)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Congrats u have beaten the game");
+                        winner = true;
+                    }
 
                 }
-                int monsterDmg = localMonster.attack();
-                Console.WriteLine($"The skurk hit you for {monsterDmg}");
-                hero.takeDamage(monsterDmg);
-                Console.WriteLine($"u has {hero.CurrentHp} left");
-                Console.ReadLine();
+                else 
+                {
+                    // Räkna bort armor
+                    int monsterDmg = Utility.SubbractTwoNumbers(localMonster.attack(),hero.Armor);                 
+                    Console.WriteLine($"The skurk hit you for {monsterDmg}");
+                    hero.takeDamage(monsterDmg);
+                    Console.WriteLine($"u has {hero.CurrentHp} left");
+                    Console.ReadLine();
+                
+                }
+
+                
+                
             }
         }
     }
