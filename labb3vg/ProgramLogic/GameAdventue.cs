@@ -1,4 +1,5 @@
 ﻿using labb3vg.Enemies;
+using labb3vg.Store;
 using System;
 using System.Collections.Generic;
 
@@ -16,10 +17,12 @@ namespace labb3vg.ProgramLogic
         static List<Monster> listOfMonstersOne = new List<Monster>();
         static List<Monster> listOfMonstersTwo = new List<Monster>();
         static List<Monster> listOfMonstersThree = new List<Monster>();
+        static List<Item> listOfItems = new List<Item>();
 
         public void Run()
         {
             CreateHero();
+            CreateItems();
 
 
             int menyChoice = 0;
@@ -38,8 +41,7 @@ namespace labb3vg.ProgramLogic
                         hero.PrintStats(); // behöver jag göra en metod som har print stats i sig kanske för att få ut listan med items
                         break;
                     case 3:
-                        Console.WriteLine("viva la boutiq");
-                        Console.ReadLine();
+                        PrintStore();
                         break;
                     case 4:
                         Console.WriteLine("Bye!");
@@ -84,13 +86,52 @@ namespace labb3vg.ProgramLogic
                 hero.Attack = 5;
                 hero.MaxhP = 30;
                 hero.CurrentHp = 30;
-                hero.Armor = 1;
+                hero.Armor = 0;
                 hero.Experience = 0;
                 hero.Level = 1;
                 hero.Gold = 10;
                 Console.WriteLine($" Welcome mighty {hero.Name} your attack is {hero.Attack}");
                 Console.ReadLine();
             }
+
+        }
+        public void PrintStore()
+        {
+            foreach (var item in listOfItems)
+            {
+                Console.WriteLine(item.Name + item.Description);
+
+            }
+            Console.ReadLine();
+            for (int i = 0; i < listOfItems.Count; i++)
+            {
+                int itemid = i + 1;
+                Console.WriteLine($"{itemid} {i +1} {listOfItems[i].Name}\n{listOfItems[i].Description}+{listOfItems[i].Boostvalue} cost {4}");
+            }
+            Console.ReadLine();
+            /*foreach (var item in levelingCurve)
+            {
+                if (experince < item)
+                { return level; }
+                else
+                {
+                    level++;
+                    MaxhP *= 2;
+                    Attack *= 2;
+                    CurrentHp = MaxhP;
+                    Level = level;
+                    if (MaxhP > 5000)
+                    { MaxhP = 5000; Attack = 600; }
+                }
+            } */
+        }
+        public void CreateItems()
+        {
+            RustySword rustySword = new RustySword();
+            ShoulderPads shoulderPads = new ShoulderPads();
+
+            listOfItems.Add(rustySword);
+            listOfItems.Add(shoulderPads);
         }
 
         public void CreateEnemies()
@@ -128,7 +169,7 @@ namespace labb3vg.ProgramLogic
         private void PrintOptionMeny()
         {
             Console.Clear();
-            Console.WriteLine("\n\tThe night is dark and full off errors\n" +
+            Console.WriteLine("\n\tDiablo VI\n" +
                 "1: Explore\n" +
                 "2: Inventory/stats\n" +
                 "3: Shop\n" +
@@ -142,7 +183,7 @@ namespace labb3vg.ProgramLogic
             // int monsterRandomiser = rn.Next(listOfMonstersOne.Count);
 
             Console.Clear();
-            Console.WriteLine("\n\tThe night is dark and full off errors\n" +
+            Console.WriteLine("\n\tOnce you enter a dungeon there is no going back!\n" +
                 "1: Lala Land\n" +
                 "2: Mellanmjölk\n" +
                 "3: Hell\n" +

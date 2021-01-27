@@ -20,7 +20,10 @@ namespace labb3vg.Enemies
 
         }
 
-
+        public virtual int getExp()
+        {
+            return this.xp;
+        }
         public virtual int DropGold()
         {
             rn.Next(giveGold);

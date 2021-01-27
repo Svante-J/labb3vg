@@ -82,11 +82,8 @@ namespace labb3vg
                     if (MaxhP > 5000)
                     { MaxhP = 5000; Attack = 600; }
                 }
-
-
             }
             return level;
-
         }
 
         public void TakeDamage(int monsterdmg)
@@ -99,6 +96,7 @@ namespace labb3vg
             Console.WriteLine($"\tMighty {Name}\nLevel:{Level}\nExperience:{Experience}\nHP:{CurrentHp}/{MaxhP}\nAttack:{Attack}\nArmor:{Armor}\nGold:{Gold}");
             Console.WriteLine("\nPLAYER INVENTORY");
             Console.WriteLine("================");
+            // if listofitems false true foreach
             Console.WriteLine("You have zero items");
             Console.ReadLine();
         }
