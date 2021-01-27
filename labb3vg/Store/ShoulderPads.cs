@@ -10,7 +10,7 @@ namespace labb3vg.Store
         {
             base.Name = "Shoulder Pads";
             base.Type = "Armor";
-            base.Description = "80talet var tog du vägen?";
+            base.Description = "80 talet var tog du vägen?";
             base.Boostvalue = 5;
             base.Cost = 50;
             base.Equiped = false;

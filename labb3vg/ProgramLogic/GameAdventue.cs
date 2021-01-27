@@ -38,7 +38,7 @@ namespace labb3vg.ProgramLogic
                         Adventurepicker();
                         break;
                     case 2:
-                        hero.PrintStats(); // behöver jag göra en metod som har print stats i sig kanske för att få ut listan med items
+                        hero.PrintStats(listOfItems);
                         break;
                     case 3:
                         PrintStore();
@@ -97,33 +97,50 @@ namespace labb3vg.ProgramLogic
         }
         public void PrintStore()
         {
-            foreach (var item in listOfItems)
-            {
-                Console.WriteLine(item.Name + item.Description);
+            Console.Clear();
+            Console.WriteLine("Paraboler och Pressenter");
+            Console.WriteLine("================");
 
-            }
-            Console.ReadLine();
             for (int i = 0; i < listOfItems.Count; i++)
             {
                 int itemid = i + 1;
-                Console.WriteLine($"{itemid} {i +1} {listOfItems[i].Name}\n{listOfItems[i].Description}+{listOfItems[i].Boostvalue} cost {4}");
+
+                if (!listOfItems[i].Equiped)
+                Console.WriteLine($"\n{i + 1} {listOfItems[i].Name}\n {listOfItems[i].Description}\n" +
+                   $"{listOfItems[i].Type}+{listOfItems[i].Boostvalue}\nCost:{listOfItems[i].Cost}");
             }
-            Console.ReadLine();
-            /*foreach (var item in levelingCurve)
+            
+            Console.WriteLine($"\nDu har {hero.Gold} att spendera");
+            Console.Write("> ");
+            int iBuy = Convert.ToInt32(Console.ReadLine());
+            iBuy =- 1;
+            int indexer = listOfItems.Count;
+            if (iBuy <= indexer && iBuy >= 0)
             {
-                if (experince < item)
-                { return level; }
-                else
-                {
-                    level++;
-                    MaxhP *= 2;
-                    Attack *= 2;
-                    CurrentHp = MaxhP;
-                    Level = level;
-                    if (MaxhP > 5000)
-                    { MaxhP = 5000; Attack = 600; }
+                indexer = iBuy;
+                if(hero.Gold >= listOfItems[indexer].Cost)
+                { 
+                    listOfItems[indexer].Equiped = true;
+                    if (listOfItems[indexer].Type == "Armor")
+                        { hero.Armor += listOfItems[indexer].Boostvalue; }
+                    else
+                        { hero.Attack += listOfItems[indexer].Boostvalue; }
+                    Console.WriteLine("You feel stronger!");
+                    Console.ReadLine();
                 }
-            } */
+                else 
+                {
+                    Console.WriteLine("You cant afford that item");
+                    Console.ReadLine();
+                }
+                
+            }
+            else 
+            {  }
+
+                         
+                                    
+            
         }
         public void CreateItems()
         {

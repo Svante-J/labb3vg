@@ -91,14 +91,27 @@ namespace labb3vg
             CurrentHp -= monsterdmg;
         }
 
-        public void PrintStats()
+
+        public void PrintStats(List<Store.Item> listOfItems)
         {
             Console.WriteLine($"\tMighty {Name}\nLevel:{Level}\nExperience:{Experience}\nHP:{CurrentHp}/{MaxhP}\nAttack:{Attack}\nArmor:{Armor}\nGold:{Gold}");
             Console.WriteLine("\nPLAYER INVENTORY");
             Console.WriteLine("================");
-            // if listofitems false true foreach
-            Console.WriteLine("You have zero items");
-            Console.ReadLine();
+
+            for (int i = 0; i < listOfItems.Count; i++)
+            {
+                int itemid = i + 1;
+
+                if (listOfItems[i].Equiped)
+                {
+                    Console.WriteLine($"\n{i + 1} {listOfItems[i].Name}\n {listOfItems[i].Description}\n" +
+                         $"{listOfItems[i].Type}+{listOfItems[i].Boostvalue}\nCost:{listOfItems[i].Cost}");
+                }
+
+                Console.ReadLine();
+            }
+                      
+
         }
 
         public string Name { get => name; set => name = value; }

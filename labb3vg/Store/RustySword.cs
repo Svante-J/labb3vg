@@ -9,7 +9,7 @@ namespace labb3vg.Store
         public RustySword()
         { 
             base.Name = "Rusty Sword";
-            base.Type = "weapon";
+            base.Type = "Weapon";
             base.Description = "Better than nothing";
             base.Boostvalue = 5;
             base.Cost = 15;
