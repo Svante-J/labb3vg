@@ -113,16 +113,19 @@ namespace labb3vg.ProgramLogic
             Console.WriteLine($"\nDu har {hero.Gold} att spendera");
             Console.Write("> ");
             int iBuy = Convert.ToInt32(Console.ReadLine());
-            iBuy =- 1;
+            iBuy -= 1;
             int indexer = listOfItems.Count;
             if (iBuy <= indexer && iBuy >= 0)
             {
                 indexer = iBuy;
                 if(hero.Gold >= listOfItems[indexer].Cost)
                 { 
-                    listOfItems[indexer].Equiped = true;
+                    
                     if (listOfItems[indexer].Type == "Armor")
-                        { hero.Armor += listOfItems[indexer].Boostvalue; }
+                        { 
+                        hero.Armor += listOfItems[indexer].Boostvalue;
+                        listOfItems[indexer].Equiped = true;
+                        }
                     else
                         { hero.Attack += listOfItems[indexer].Boostvalue; }
                     Console.WriteLine("You feel stronger!");
@@ -223,6 +226,10 @@ namespace labb3vg.ProgramLogic
                 case 4:
                     PrintOptionMeny();
                     break;
+                default:
+
+                    break;
+
             }
             Console.WriteLine("");
         }
