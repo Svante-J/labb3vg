@@ -272,7 +272,8 @@ namespace labb3vg.ProgramLogic
 
         private void BattleComp(Monster localMonster)
         {
-            Console.WriteLine($"HAR MONSTRET HP?{localMonster.Hp} LEVER DET {localMonster.Dead}");
+            CreateEnemies();            
+            Console.WriteLine($"HAR MONSTRET HP?{localMonster.Hp} Död? {localMonster.Dead}");
             localMonster.isDead();
             Console.WriteLine($"you hav encountered {localMonster.getName()}");
             Console.ReadLine();
