@@ -28,7 +28,7 @@ namespace labb3vg.ProgramLogic
             int menyChoice = 0;
             while (!winner && !looser)
             {
-                CreateEnemies();
+                
                 PrintOptionMeny();
                 Console.WriteLine("> ");
                 menyChoice = Convert.ToInt32(Console.ReadLine());
@@ -36,6 +36,7 @@ namespace labb3vg.ProgramLogic
                 {
                     case 1:
                         Adventurepicker();
+                        
                         break;
                     case 2:
                         hero.PrintStats(listOfItems);
@@ -199,9 +200,7 @@ namespace labb3vg.ProgramLogic
         }
         private void Adventurepicker()
         {
-            // Random rn = new Random();
-            // int monsterRandomiser = rn.Next(listOfMonstersOne.Count);
-
+            CreateEnemies();
             Console.Clear();
             Console.WriteLine("\n\tOnce you enter a dungeon there is no going back!\n" +
                 "1: Lala Land\n" +
@@ -231,7 +230,7 @@ namespace labb3vg.ProgramLogic
                     break;
 
             }
-            Console.WriteLine("");
+            
         }
 
         /// <summary>
@@ -255,7 +254,6 @@ namespace labb3vg.ProgramLogic
                 BattleComp(listOfMonstersOne[monsterRandomiser]);
 
             }
-
         }
 
         private void BattleLevelTwo()
@@ -274,11 +272,12 @@ namespace labb3vg.ProgramLogic
 
         private void BattleComp(Monster localMonster)
         {
+            Console.WriteLine($"HAR MONSTRET HP?{localMonster.Hp} LEVER DET {localMonster.Dead}");
             localMonster.isDead();
             Console.WriteLine($"you hav encountered {localMonster.getName()}");
             Console.ReadLine();
-            localMonster.isDead();// sätter tillbaka värdet på booolen om man redan slagits
-            while (!localMonster.isDead())
+            
+            while (!localMonster.isDead() && !looser)
             {
                 Console.WriteLine($"Du svingar och slår! {localMonster.getName()} tar {hero.GiveDmg(localMonster)} i skada");
                 Console.WriteLine($"av {localMonster.getName()} liv återstår {localMonster.getHp()}");
@@ -301,7 +300,6 @@ namespace labb3vg.ProgramLogic
                         Console.ReadLine();
                         winner = true;
                     }
-
                 }
                 else 
                 {
@@ -309,12 +307,15 @@ namespace labb3vg.ProgramLogic
                     int monsterDmg = Utility.SubbractTwoNumbers(localMonster.attack(),hero.Armor);                 
                     Console.WriteLine($"The skurk hit you for {monsterDmg}");
                     hero.TakeDamage(monsterDmg);
-                    Console.WriteLine($"u has {hero.CurrentHp} left");
-                    Console.ReadLine();
-                
-                }
-
-                
+                    Console.WriteLine($"u have {hero.CurrentHp} left");
+                    if (hero.CurrentHp <= 0)
+                    {
+                        Console.WriteLine("You are dead!");
+                        Console.ReadLine();
+                        looser = true; 
+                    }
+                    Console.ReadLine();                
+                }                
                 
             }
         }

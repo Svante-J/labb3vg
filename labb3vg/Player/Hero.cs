@@ -28,8 +28,7 @@ namespace labb3vg
             Armor = armor;
             Level = level;
             Experience = experience;
-            Gold = gold;
-           // List<bool> HeroItems; // köper man i butik så gör vi dom true! lägg in alla items.
+            Gold = gold;           
         }
        
         public Hero()
@@ -100,11 +99,10 @@ namespace labb3vg
 
             for (int i = 0; i < listOfItems.Count; i++)
             {
-                int itemid = i + 1;
-
+                
                 if (listOfItems[i].Equiped)
                 {
-                    Console.WriteLine($"\n{i + 1} {listOfItems[i].Name}\n {listOfItems[i].Description}\n" +
+                    Console.WriteLine($"\n{listOfItems[i].Name}\n {listOfItems[i].Description}\n" +
                          $"{listOfItems[i].Type}+{listOfItems[i].Boostvalue}\nCost:{listOfItems[i].Cost}");
                 }
 
